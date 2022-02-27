@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:21 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/02/24 21:23:36 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/02/27 14:53:44 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,27 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct data
+typedef struct s_stack
 {
-	int *a;
-	int *b;
+	int *stack_a;
+	int *stack_b;
 
-}    t_list;
-
-
+}    t_stack;
 
 
+int	main(int argc, char *argv[]);
+
+
+void	sa(t_stack *stack);
+void	sb(t_stack *stack);
+void	ss(t_stack *stack);
+void	pa(t_stack *stack);
+void	pb(t_stack *stack);
+void	ra(t_stack *stack);
+void	rb(t_stack *stack);
+void	rr(t_stack *stack);
+void	rra(t_stack *stack);
+void	rrb(t_stack *stack);
+void	rrr(t_stack *stack);
 
 #endif
