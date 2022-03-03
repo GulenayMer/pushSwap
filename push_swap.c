@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:00 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/01 22:05:27 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:42:13 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
 // *argv[] == **argv
 int	main(int argc, char *argv[])
 {
-	if (argc <= 1)
+	int	*input;
+	int	length;
+
+	length = argc - 1;
+
+	input = (int *)malloc((length) * sizeof(int));
+	if (!input)
+		return (0);
+	if (argc < 2)
 		return (0);
 
-
-	
+	free_mem();
 	return (0);
 }

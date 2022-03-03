@@ -6,14 +6,15 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 22:10:18 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/01 22:33:16 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:40:49 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	sort_two(t_stack *stack)
-{
+{ 
+		/* 2, 1 */
 		sa(stack);
 }
 
