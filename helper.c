@@ -12,13 +12,17 @@
 
 #include "push_swap.h"
 
-size_t	ft_length(int *n)
+/* size_t	ft_length(int *n)
 {
 	size_t	length;
 
 	length = sizeof(n) \ sizeof(n[0]);
 	return (length);
 }
+*/
+
+
+	/* ascii to integer */
 
 int	ft_atoi(const char *nptr)
 {
@@ -48,3 +52,35 @@ int	ft_atoi(const char *nptr)
 	return (sign * result);
 }
 
+
+	/* print error  */
+size_t	ft_strlen(const char *s)
+{
+	size_t	length;
+	size_t	i;
+
+	length = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		length++;
+		i++;
+	}
+	return (length);
+}
+
+void	ft_putstr_fd(char *str, int fd)
+{
+	size_t length;
+
+	if (!str)
+		return (0);
+	length = ft_strlen(str);
+	write(fd, str, length);
+}
+
+int	print_error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	return (0);
+}

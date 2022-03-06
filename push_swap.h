@@ -16,12 +16,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_stack
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
+
+
+typedef struct stack_all
 {
 	int *a;
 	int *b;
+	int length_a;
+	int length_b;
+	int length;
 
-}    t_stack;
+}    stack_data;
 
 
 int	main(int argc, char *argv[]);
@@ -29,33 +36,37 @@ int	main(int argc, char *argv[]);
 
 /* Check Input -- Detect Errors */
 int 	check_integer(int argc, char *arg[]);
-void	check_dublicate(int argc, char *argv[]);
+int		check_dublicate(int argc, char *argv[]);
 int		check_overflow(int argc, char *argv[]);
-int		check_if_sorted(t_stack *stack);
+int		check_if_sorted(stack_data *stack);
 
 /* Helper Functions */
-int	ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
 size_t	ft_length(int *n);
+int		print_error(char *str);
+void	ft_putstr_fd(char *str, int fd);
+size_t	ft_strlen(const char *s);
+
 
 
 /* OPERATIONS */
-void	sa(t_stack *stack);
-void	sb(t_stack *stack);
-void	ss(t_stack *stack);
-void	pa(t_stack *stack);
-void	pb(t_stack *stack);
-void	ra(t_stack *stack);
-void	rb(t_stack *stack);
-void	rr(t_stack *stack);
-void	rra(t_stack *stack);
-void	rrb(t_stack *stack);
-void	rrr(t_stack *stack);
+void	sa(stack_data *stack);
+void	sb(stack_data *stack);
+void	ss(stack_data *stack);
+void	pa(stack_data *stack);
+void	pb(stack_data *stack);
+void	ra(stack_data*stack);
+void	rb(stack_data *stack);
+void	rr(stack_data *stack);
+void	rra(stack_data *stack);
+void	rrb(stack_data *stack);
+void	rrr(stack_data *stack);
 
 
 /* sort input up to 5 integers */
-void	sort_two(t_stack *stack);
-void	sort_three(t_stack *stack);
-void	sort_four(t_stack *stack);
-void	sort_five(t_stack *stack);
+void	sort_two(stack_data *stack);
+void	sort_three(stack_data *stack);
+void	sort_four(stack_data *stack);
+void	sort_five(stack_data *stack);
 
 #endif

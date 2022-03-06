@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:24:07 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/03 21:57:25 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:40:20 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	check_integer(int argc, char *argv[])
 {
 	int i;
 	
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < argc - 1)
 	{
-		ft_atoi(argv[i]);
+		if (ft_atoi(argv[i]))
+			write(2, "Error\n", 6);
 		i++;
 	}
 return (1);	
@@ -42,48 +43,54 @@ int	check_overflow(int argc, char *argv[])
 	input = ft_atoi(argv[argc]);
 	while (argc > 0)
 	{
-		if (input < -2147483649 || input > 2147483648) 
+		if (input < INT_MIN || input > INT_MAX) 
 		{
 			write(2, "Error\n", 6);
-			exit(1);
+			return (1);
 		}
 	argc--;
 	}
+	return (0);
 }
 
 
 // with duplicate numeric parameters -- error
-void	check_dublicate(int argc, char *argv[])
+int check_dublicate(int argc, char *argv[])
 {
 	int i;
 	int j;
 
 	i = 1;
-	while (i < argc)
+	while (i < argc - 1)
 	{
 		j = i + 1;
-		while (j < argc - 1)
+		while (j < argc)
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-			{
+			{	
 				write(2, "Error\n", 6);
-				exit(1);
+				return (1);
 			}
 		j++;
 		}
 	i++;
 	}
+return (0);
 }
 
 
 // check if it is already sorted
-int		check_if_sorted(t_stack *stack)
+int		check_if_sorted(int argc, char *argv[])
 {
 	int i;
 
 	i = 0;
-	while (stack->a[i] < stack->a[i + 1])
-	i++;
+	while (i < argc - 1)
+	{
+		if (ft_atoi(argv[i])> ft_atoi(argv[i + 1]))
+		return (0);
+		i++;
+	}
 	return (1);
 }
 
