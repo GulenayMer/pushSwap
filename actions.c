@@ -61,7 +61,6 @@ void	pa(stack_data *stack)
 		stack->a[i] = stack->a[i - 1];
 		i--;
 	}
-	
 	j = 0;
 	while (j < stack->length_b - 1)
 	{

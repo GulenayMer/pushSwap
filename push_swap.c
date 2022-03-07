@@ -17,14 +17,23 @@ int initialize_stack(int argc, char **argv, stack_data *stack)
 {
 
 	int length;
+	int	i;
+	int	j;
 
 	length = argc - 1;
 	stack->length_a = stack->length;
 	stack->length_b = 0;
 	stack->a = malloc(stack->length * sizeof(int));
 	stack->b = malloc(stack->length * sizeof(int));
-	return (0);
-
+	i = 0;
+	j = 1;
+	while (i < length)
+	{
+		stack->a[i] = ft_atoi(argv[j]);
+		i++;
+		j++;
+	}
+	return (stack->a);
 }
 
 // argc the number of arguments pointed by char argv-- being passed 
@@ -53,10 +62,10 @@ int	main(int argc, char *argv[])
 {
 	int	*input;
 	int	length;
+	stack_data	*stack;
 
 	length = argc - 1;
 
-	input = (int *)malloc((length) * sizeof(int));
 	if (!input)
 		return (0);
 	if (argc < 2)

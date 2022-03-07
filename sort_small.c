@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	sort_two(t_stack *stack)
+void	sort_two(stack_data *stack)
 { 
 		/* 2, 1 */
 		sa(stack);
 }
 
 
-void	sort_three(t_stack *stack)
+void	sort_three(stack_data *stack)
 {
 	/* 2, 1, 3 */
 	if (stack->a[0] > stack->a[1] && stack->a[1] < stack->a[2] &&
@@ -50,14 +50,14 @@ void	sort_three(t_stack *stack)
 }
 
 
-void	sort_four(t_stack *stack)
+void	sort_four(stack_data *stack)
 {
 	/* 1, 2, 4, 3 */
 	// use sort_three(stack);
 }
 
 
-void	sort_five(t_stack *stack)
+void	sort_five(stack_data *stack)
 {
 
 	// use sort_three(stack);
