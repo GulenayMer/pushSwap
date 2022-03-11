@@ -42,18 +42,19 @@ int initialize_stack(int argc, char **argv, stack_data *stack)
 void sort(int argc, char *argv[])
 {
 	int length;
-
+	stack_data *stack;
+	
 	length = argc - 1;
 	if (length == 2)
-		sort_two();
+		sort_two(stack);
 	else if (length == 3)
-		sort_three();
+		sort_three(stack);
 	else if (length == 4)
-		sort_four(4);
+		sort_four(stack);
 	else if (length == 5)
-		sort_five();
+		sort_five(stack);
 	else
-		sort_big();	
+		sort_big(stack);	
 }
 
 
