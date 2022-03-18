@@ -21,6 +21,7 @@ SRCS 	=	push_swap.c \
 			input_check.c \
 			helper.c \
 			sort_small.c \
+			sort_big.c \
 			actions.c \
 			
 SRC_OBJS	=	$(SRCS:.c=.o)
