@@ -6,22 +6,22 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:24:07 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/05 21:40:20 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:33:26 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* with non numeric parameters -- error
-   with duplicate numeric parameters -- error
-   with only numeric parameters but greater than maxint --- error
-   without any parameters -- display nothing
-   with valid parameters but with nonexisting actions -- error
-   with valid parameters but with several spaces before/after the action -- error
+/* 1) with non numeric parameters -- error
+   2) with duplicate numeric parameters -- error
+   3) with only numeric parameters but greater than maxint --- error
+   4) without any parameters -- display nothing
+   5) with valid parameters but with nonexisting actions -- error
+   6) with valid parameters but with several spaces before/after the action -- error
 */
 
 /* */
-int	check_integer(int argc, char *argv[])
+int	check_integer(int argc, char **argv)
 {
 	int i;
 	
@@ -36,7 +36,7 @@ return (1);
 }
 
 // overflow integer range
-int	check_overflow(int argc, char *argv[])
+int	check_overflow(int argc, char **argv)
 {
 	int input;
 
@@ -55,7 +55,7 @@ int	check_overflow(int argc, char *argv[])
 
 
 // with duplicate numeric parameters -- error
-int check_dublicate(int argc, char *argv[])
+int check_dublicate(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -80,7 +80,7 @@ return (0);
 
 
 // check if it is already sorted
-int		check_if_sorted(int argc, char *argv[])
+int		check_if_sorted(int argc, char **argv)
 {
 	int i;
 

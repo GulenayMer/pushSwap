@@ -21,7 +21,6 @@
 }
 */
 
-
 	/* ascii to integer */
 
 int	ft_atoi(const char *nptr)
