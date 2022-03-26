@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 11:06:44 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/01 22:06:04 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:41:02 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 	return (length);
 }
 */
-
-	/* ascii to integer */
 
 int	ft_atoi(const char *nptr)
 {
@@ -73,10 +71,11 @@ void	ft_putstr_fd(char *str, int fd)
 	size_t length;
 
 	if (!str)
-		return (0);
+		return ;
 	length = ft_strlen(str);
 	write(fd, str, length);
 }
+
 
 int	print_error(char *str)
 {

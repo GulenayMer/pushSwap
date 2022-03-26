@@ -15,47 +15,42 @@
 /* 1) with non numeric parameters -- error
    2) with duplicate numeric parameters -- error
    3) with only numeric parameters but greater than maxint --- error
+
+
    4) without any parameters -- display nothing
    5) with valid parameters but with nonexisting actions -- error
    6) with valid parameters but with several spaces before/after the action -- error
 */
 
 /* */
+int	ft_is_digit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
 int	check_integer(int argc, char **argv)
 {
 	int i;
 	
-	i = 0;
-	while (i < argc - 1)
+	while (--argc)
 	{
-		if (ft_atoi(argv[i]))
-			write(2, "Error\n", 6);
-		i++;
-	}
-return (1);	
-}
-
-// overflow integer range
-int	check_overflow(int argc, char **argv)
-{
-	int input;
-
-	input = ft_atoi(argv[argc]);
-	while (argc > 0)
-	{
-		if (input < INT_MIN || input > INT_MAX) 
+		i = 0;
+		while (argv[argc][i])
 		{
-			write(2, "Error\n", 6);
-			return (1);
+			if (ft_is_digit(argv[argc][i]) || argv[argc][i] == '-'
+				|| argv[argc][i] == '+')
+				i++;
+			else
+				return (1);
 		}
-	argc--;
 	}
 	return (0);
 }
 
-
 // with duplicate numeric parameters -- error
-int check_dublicate(int argc, char **argv)
+int check_duplicate(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -67,30 +62,42 @@ int check_dublicate(int argc, char **argv)
 		while (j < argc)
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-			{	
-				write(2, "Error\n", 6);
 				return (1);
-			}
-		j++;
+			j++;
 		}
-	i++;
+		i++;
 	}
-return (0);
+	return (0);
+}
+
+
+// overflow integer range
+int	check_overflow(int argc, char **argv)
+{
+	//int input;
+	//input = ft_atoi(argv[argc]);
+	while (--argc > 0)
+	{
+		if (ft_atoi(argv[argc]) < INT_MIN || ft_atoi(argv[argc]) > INT_MAX) 
+			return (1);
+		//argc--;
+	}
+	return (0);
 }
 
 
 // check if it is already sorted
-int		check_if_sorted(int argc, char **argv)
+int		check_if_sorted(t_stack **stack)
 {
-	int i;
+	t_stack	*temp;
 
-	i = 0;
-	while (i < argc - 1)
+	temp = *stack;
+	while (temp->next != NULL)
 	{
-		if (ft_atoi(argv[i])> ft_atoi(argv[i + 1]))
-		return (0);
-		i++;
+		if (temp->data < temp->next->data)
+			temp = temp->next;
+		else
+			return (1);
 	}
-	return (1);
+	return (0);
 }
-

@@ -6,86 +6,77 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:00 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/18 17:48:41 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:43:41 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-int initialize_stack(int argc, char **argv, t_stack **head)
+t_stack	*create_stack(t_stack **stack_a, int argc, char **argv)
 {
-
-	int length;
 	int	i;
-	int	j;
-
-	length = argc - 1;
-	stack->length_a = length;
-	stack->length_b = 0;
-	stack->a = malloc(length * sizeof(int));
-	stack->b = malloc(length * sizeof(int));
-	if (!(stack->a) | !(stack->b))
-		return (0);
-	i = 0;
-	j = 1;
-	while (i < length)
+	
+	*stack_a = ft_lstnew(ft_atoi(argv[1]));
+	i = 2;
+	while (i < argc)
 	{
-		stack->a[i] = ft_atoi(argv[j]);
+		ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(argv[i])));
 		i++;
-		j++;
 	}
-	return (stack->a);
+	return(*stack_a);
 }
 
-// argc the number of arguments pointed by char argv-- being passed 
-// argc --- argument count, argv--- argument vector --
-// *argv[] == **argv
-void sort(int argc, char **argv)
+void	sort_small_size(t_stack *stack_a, t_stack *stack_b, int argc)
 {
-	int length;
-	stack_data *stack;
-	
-	length = argc - 1;
-	if (length == 2)
-		sort_two(stack);
-	else if (length == 3)
-<<<<<<< HEAD
-	
-		sort_three();
-=======
-		sort_three(stack);
->>>>>>> 25287c5908035ddc681e6e030f26677f98da29ef
-	else if (length == 4)
-		sort_four(stack);
-	else if (length == 5)
-		sort_five(stack);
-	else
-		sort_big(stack);	
+	if (argc == 3)
+		sort_two(&stack_a);
+	else if (argc == 4)
+		sort_three(&stack_a);
+	else if (argc == 5)
+		sort_four(&stack_a, &stack_b);
+	else if (argc == 6)
+		sort_five(&stack_a, &stack_b);
+	return ;
 }
 
-
-
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
-	int	*input;
-	int	length;
-	stack_data	*stack;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-	length = argc - 1;
+	stack_a = NULL;
+	stack_b = NULL;
 
-	if (!input)
+	create_stack(&stack_a, argc, argv);
+	stack_b = (t_stack *)malloc(sizeof(t_stack));
+
+	if (argc == 1 || argc == 2)
 		return (0);
-	if (argc < 2)
-		return (0);
-	if (check_input(input))
-		return (print_Error("Error\n"));
-	if (is_sorted(input))
+	if (check_duplicate(argc, argv) || check_integer(argc, argv) || check_overflow(argc, argv))
 	{
-		free_all(input);
-		return (0);
+		print_error("Error\n");
+		exit (-1);
 	}
-	initialize_stack(argc, argv, stack);
-	free_all(input);
+	if (argc > 2 && argc < 7)
+		sort_small_size(stack_a, stack_b, argc);
+	ft_free(&stack_a);
 	return (0);
 }
+
+
+
+
+//printList(stack_a);
+	/* int a; 
+	a = get_minimum(&stack_a);
+	printf("%d", a); */
+
+	//printf("\nNumber Of Arguments Passed: %d\n",argc);
+	//sort_two(&stack_a);
+	//sort_three(&stack_a);
+	//stack_b = (t_stack *)malloc(sizeof(t_stack));
+
+		/* if (check_integer(argc, argv) || check_overflow(argc, argv) || check_dublicates(argc, argv)
+		|| check_if_sorted(argc, argv))
+		return (0); */

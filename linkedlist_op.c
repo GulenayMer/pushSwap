@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-/* Function to swap two integers */
 void swap_ab(t_stack **head)
 {
 	t_stack	*first_node;
@@ -58,7 +57,7 @@ void	push_ab(t_stack **head_a, t_stack **head_b)
 
 	first_node = *head_a;
 	second_node = first_node->next;
-	head_a = second_node;
+	*head_a = second_node;
 	first_node->next = *head_b;
 	*head_b = first_node;
 }
