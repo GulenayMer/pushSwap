@@ -1,4 +1,5 @@
 
+
 #include "push_swap.h"
 
 /* 1) copy_stack  */
@@ -27,84 +28,105 @@ t_stack	*copy_a(t_stack *head_a)
 	}
 }
 
-/*  Function to swap the nodes 
-int	swap_nodes(int node1, int node2)
+t_stack	*get_min(t_stack **head)
 {
-	int temp;
+	t_stack	*current_node;
+	t_stack	*min = NULL;
+	//int	cnt_min;
 
-	temp = node1;
-	node1 = node2;
-	node2 = temp;
-	return (node2);
+	//cnt_min = 0;
+	current_node = *head;
+	if (head == NULL)
+		return (0);
+	while (current_node != NULL)
+	{
+		if (current_node->index == -1 && min->data > current_node->data)
+		{
+			min->data = current_node->data;
+		}
+		current_node = current_node->next;
+	}
+	return (min);
 }
 
+void indexing(t_stack **stack_a)
+{
+	t_stack *head;
+	int		index;
+
+	index = 0;
+	head = get_min(stack_a);
+	while (head)
+	{
+		head->index = index++;
+		head = get_min(stack_a);
+	}
+	index = 0;
+	/* while (index < ft_lstsize(*stack_a))
+	{
+			printf("%d" , index);
+			index++;
+	}
+	*/
+}
+
+/* int	bit_length(int n)
+{
+	int	bits;
+
+	bits = 0;
+	while ((n >> bits) != 0)
+		bits++;
+	return (bits);
+}
 */
 
-/*  Function to sort the list 
-void	bubble_sort(t_stack **cpy_a)
+ int	get_max_bits(t_stack **stack)
 {
-	int	i;
-	int	j;
-	int	counter;
-	int	swapped;
-	t_stack	*current_node;
+	t_stack	*head;
+	int		max;
+	int		max_bits;
 
-	current_node = cpy_a;
-	
-	//counter = 0;
-
-	i = 0;
-	while(i <= counter)
+	head = *stack;
+	max = head->index;
+	max_bits = 0;
+	while (head)
 	{
-		current_node = *cpy_a;
-		swapped = 0;
-		j = 0;
-		while (j < counter - i - 1)
+		if (head->index > max)
+			max = head->index;
+		head = head->next;
+	}
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}	
+
+void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	int	index_len;
+	int size;
+	int	bit_iteration;
+	int		i;
+	size = ft_lstsize(*stack_a); // stack lenght, check the function again
+	index_len = get_max_bits(stack_a);
+
+	bit_iteration = 0;
+	while (bit_iteration < index_len)
+	{
+		i = 0;
+		while (i < size)
 		{
-			if (current_node->data > current_node->next->data)
-			{
-				*cpy_a = swap_nodes(current_node->data, current_node->next->data); 
-			}
-			j++;
+			if ((((*stack_a)->index >> bit_iteration) & 1) == 1)
+				rotate_a(stack_a);
+			else
+				push_to_b(stack_a, stack_b);
 		}
 		i++;
 	}
-}
-*/
-
-int	bubble_sort(int	num_nodes, t_stack **head)
-{
-	int	node_counter;
-	int	counter;
-	int	node_data_cpy;
-
-	t_stack	*current_node;
-	t_stack *next_node;
-
-	node_counter = num_nodes - 2;
-	while (node_counter >= 0)
+	while (*stack_b)
 	{
-		current_node = *head;
-		next_node = current_node->next;
-		node_counter--;
-
-	// loop until the smallest value rises to the top
-		counter = 0;
-		while (counter <= node_counter)
-		{
-			// switch the data if current node is larger than the nextnode
-			if (current_node->data > next_node->data)
-			{
-				node_data_cpy = current_node->data;
-				current_node->data = next_node->data;
-				next_node->data = node_data_cpy;
-			}
-
-			// traverse to the next nodes
-			current_node = next_node;
-			next_node = next_node->next;
-			counter++;
-		}
+		push_to_a(stack_a, stack_b);
 	}
-	return (node_data_cpy);
+	bit_iteration++;
 }
+
