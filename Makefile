@@ -6,39 +6,43 @@
 #    By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:14:11 by mgulenay          #+#    #+#              #
-#    Updated: 2022/02/24 21:20:25 by mgulenay         ###   ########.fr        #
+#    Updated: 2022/04/07 00:07:55 by mgulenay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME 	= 	push_swap.a
+NAME 	= 	push_swap
 
 CC 		= 	gcc
 
 CFLAGS 	= 	-Wall -Wextra -Werror
 
 SRCS 	=	push_swap.c \
-			input_check.c \
-			helper.c \
 			sort_small.c \
-			sort_big.c \
-			actions.c \
+			operations.c \
+			linkedlist_op.c \
+			input_check.c \
+			linkedlist.c \
+			helper.c \
 			
-SRC_OBJS	=	$(SRCS:.c=.o)
+SRC_OBJS	=	$(SRCS:%.c=%.o)
 
 RM          =	rm -f
 
 all : $(NAME)
 
-$(NAME): $(SRC_OBJS)
-	ar rcs $(NAME) $(SRC_OBJS)
+$(%.o): $(%.c)
+	$(CC) -o $@ -c $^
+
+$(NAME): $(SRC_OBJS) 
+	$(CC) $(CFLAGS) -o $@ $(SRC_OBJS) $(LIBFT)
 
 clean:
 		$(RM) $(SRC_OBJS)
-
+		
 fclean:		clean
 				$(RM) $(NAME)
-	
+
 re: 		fclean all
 
 .PHONY: all clean fclean re

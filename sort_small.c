@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 22:10:18 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/24 22:41:53 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/07 00:10:19 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	sort_two(t_stack **head)
 {
-		if (check_if_sorted(head))
-			swap_a(head);
-		//printList(*head);
+		swap_a(head);
 }
 
 void	sort_three(t_stack **head)
@@ -91,7 +89,7 @@ int 	get_minimum(t_stack **head)
 }
 
 
- void	sort_four(t_stack **head_a, t_stack **head_b)
+void	sort_four(t_stack **head_a, t_stack **head_b)
 {
 	int min;
 
@@ -105,11 +103,29 @@ int 	get_minimum(t_stack **head)
 
 void	sort_five(t_stack **head_a, t_stack **head_b)
 {
-	int min;
+	int		min;
+	int		next_min;
+	t_stack	*last_node;
+
+	last_node = (t_stack *)malloc(sizeof(t_stack));
+	last_node = ft_lst_last(*head_a);
+	last_node->next = NULL;
+	
 	min = get_minimum(head_a);
 	while ((*head_a)->data != min)
 		rotate_a(head_a);
 	push_to_b(head_a, head_b);
-	sort_four(head_a, head_b);
+	next_min = get_minimum(head_a);
+	last_node = ft_lst_last(*head_a);
+	if (last_node->data == next_min)
+			rev_rotate_a(head_a);
+	else if (last_node->data != next_min)
+	{
+		while ((*head_a)->data != next_min)
+			rotate_a(head_a);
+	}
+	push_to_b(head_a, head_b);
+	sort_three(head_a);
+	push_to_a(head_a, head_b);
 	push_to_a(head_a, head_b);
 }

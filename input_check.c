@@ -6,23 +6,12 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:24:07 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/17 15:33:26 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/06 22:17:55 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* 1) with non numeric parameters -- error
-   2) with duplicate numeric parameters -- error
-   3) with only numeric parameters but greater than maxint --- error
-
-
-   4) without any parameters -- display nothing
-   5) with valid parameters but with nonexisting actions -- error
-   6) with valid parameters but with several spaces before/after the action -- error
-*/
-
-/* */
 int	ft_is_digit(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -30,27 +19,26 @@ int	ft_is_digit(int c)
 	return (0);
 }
 
-int	check_integer(int argc, char **argv)
+/* Check if it is an integer */
+int	ft_check_integer(int argc, char **argv)
 {
-	int i;
-	
+	int	i;
+
 	while (--argc)
 	{
 		i = 0;
 		while (argv[argc][i])
 		{
-			if (ft_is_digit(argv[argc][i]) || argv[argc][i] == '-'
-				|| argv[argc][i] == '+')
-				i++;
-			else
-				return (1);
+			if (ft_is_digit(argv[argc][i]) || argv[argc][i] == '-' || argv[argc][i] == '+')
+				return (0);	
+			i++;
 		}
 	}
-	return (0);
+	return (1);
 }
 
-// with duplicate numeric parameters -- error
-int check_duplicate(int argc, char **argv)
+/*check if it has duplicate numeric parameters -- error */
+int ft_check_duplicate(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -70,23 +58,25 @@ int check_duplicate(int argc, char **argv)
 	return (0);
 }
 
-
-// overflow integer range
-int	check_overflow(int argc, char **argv)
+/* check max -- min integer range -- error */
+int	ft_check_minmax(char **argv)
 {
-	//int input;
-	//input = ft_atoi(argv[argc]);
-	while (--argc > 0)
+	int		i;
+	long	tmp;
+	
+	i = 0;
+	while (argv[i])
 	{
-		if (ft_atoi(argv[argc]) < INT_MIN || ft_atoi(argv[argc]) > INT_MAX) 
+		tmp = ft_atoi(argv[i]);
+		if (tmp <= -2147483648 || tmp >= 2147483647)
 			return (1);
-		//argc--;
+		i++;
 	}
 	return (0);
 }
 
 
-// check if it is already sorted
+/* check if it is already sorted */
 int		check_if_sorted(t_stack **stack)
 {
 	t_stack	*temp;
@@ -94,10 +84,9 @@ int		check_if_sorted(t_stack **stack)
 	temp = *stack;
 	while (temp->next != NULL)
 	{
-		if (temp->data < temp->next->data)
-			temp = temp->next;
-		else
-			return (1);
+		if (temp->data > temp->next->data)
+			return (0);
+		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }

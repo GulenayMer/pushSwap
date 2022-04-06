@@ -1,4 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linkedlist.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/06 19:53:10 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/04/06 20:11:09 by mgulenay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+/* creates a new node, returns the pointer of the new node / we get the list */
+t_stack	*ft_lst_new(int new_data)
+{
+	t_stack	*new_element;
+
+	new_element = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_element)
+		return (NULL);
+	new_element->data = new_data;
+	new_element->index = -1;
+	new_element->next = NULL;
+	return (new_element);
+}
+
+/* returns the last node of the list */
+t_stack	*ft_lst_last(t_stack *head)
+{
+	t_stack	*last_element;
+
+	if (!head)
+		return (NULL);
+	while (head->next != NULL)
+		head = head->next;
+	last_element = head;
+	return (last_element);
+}
+
+/* add the node to the stack_a*/
+void	ft_lst_add_back(t_stack **head, t_stack *new)
+{
+	t_stack	*last;
+
+	if (head)
+	{
+		if (*head == NULL)
+			*head = new;
+		else
+		{
+			last = ft_lst_last(*(head));
+			last->next = new;
+		}
+	}
+}
 
 /* Function to print nodes in a given linked list */
 void	printList(t_stack *head)
@@ -9,42 +65,19 @@ void	printList(t_stack *head)
 	}
 }
 
-/*  inserting a new node at the front of the list  */
-void push_to_top(t_stack **head, int new_data)
+
+/* frees the node */
+void	ft_free(t_stack **stack)
 {
-	t_stack  *temp;
-	t_stack  *current = malloc(sizeof(t_stack)); // allocate a node -- new node
-	
-	current->data = new_data; // put in the data
-	current->next = NULL;	// the current node points to the null
-	if (!*head)          // if head is null
-		*head = current; //move the head to point to the new/current node 
-	else
+	t_stack *temp;
+
+	if (stack)
 	{
-		temp = *head;	// if head is not null, store the head into the temp
-		*head = current;  //move the head to point to the new node
-		(*head)->next = temp;	// head points to the temp
-	}
-}
-
-/*  inserting a new node at the end of the list  */
-
-void to_add_end(t_stack  **head, int new_data)
-{
-	t_stack  *current = malloc(sizeof(t_stack)); // allocate--create a new node
-	t_stack	*lastNode;
-
-	current->data = new_data; // put in the data
-	current->next = NULL;	// the current node points to the null
-	if (!*head)          // if head is null-- empty list
-		*head = current; //move the head to point to the new/current node --- make the new node as the head
-	else
-	{
-		lastNode = *head;	// if head is not null
-		while (lastNode->next != NULL)
+		while (*stack)
 		{
-			lastNode = lastNode->next;   // find the last node
+			temp = *stack;
+			*stack = (*stack)->next;
+			free(temp);
 		}
-		lastNode->next = current;	// make the last node as the new one
 	}
 }

@@ -6,20 +6,11 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 11:06:44 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/03/24 22:41:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/06 22:13:17 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* size_t	ft_length(int *n)
-{
-	size_t	length;
-
-	length = sizeof(n) \ sizeof(n[0]);
-	return (length);
-}
-*/
 
 int	ft_atoi(const char *nptr)
 {
@@ -49,8 +40,7 @@ int	ft_atoi(const char *nptr)
 	return (sign * result);
 }
 
-
-	/* print error  */
+/* print error  */
 size_t	ft_strlen(const char *s)
 {
 	size_t	length;
@@ -74,11 +64,4 @@ void	ft_putstr_fd(char *str, int fd)
 		return ;
 	length = ft_strlen(str);
 	write(fd, str, length);
-}
-
-
-int	print_error(char *str)
-{
-	ft_putstr_fd(str, 2);
-	return (0);
 }
