@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:21 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/06 23:26:24 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/07 22:54:04 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		ft_is_valid(int argc, char **argv);
 
 /* Helper Functions */
 int		ft_atoi(const char *nptr);
-//int		print_error(t_stack *s);
 void	ft_putstr_fd(char *str, int fd);
 
 /* Linked List Utilities */
@@ -44,7 +43,9 @@ t_stack	*ft_lst_new(int new_data);
 t_stack	*ft_lst_last(t_stack *head);
 void	ft_lst_add_back(t_stack **head, t_stack *new);
 void 	printList(t_stack *head);
-void	ft_free(t_stack **stack);
+//void	ft_free(t_stack **stack);
+int		ft_lst_size(t_stack *lst);
+void	free_stack(t_stack **stack_a, t_stack **stack_b);
 
 /* OPERATIONS */
 void	swap_a(t_stack **head);
@@ -70,13 +71,12 @@ void	sort_five(t_stack **head, t_stack **head_b);
 int		get_minimum(t_stack **head);
 
 /* sort input integers > 5 */
-//int		count_max_bits(int max_number);
-//t_stack	*copy_stack(t_stack *head_a);
-//void 	indexing(t_stack **stack_a, t_stack **stacka_cpy);
-//t_stack	*get_min(t_stack **head);
-//void 	radix_main_sort(t_stack **stacka_cpy, t_stack **stack_b);
-//void	radix_sort(t_stack **stacka_cpy, t_stack **stack_b, int max_number, int max_bits);
-//void 	sort_bigger_size(t_stack *stack_a, t_stack *stack_b);
+int		get_max_bits(t_stack **stack);
+int		count_max_bits(int max_number, int max_bits);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+t_stack	*get_min(t_stack **stack);
+void	indexing(t_stack **stack_a);
+
 
 /*  */
 void	get_input(t_stack **stack, char **argv);

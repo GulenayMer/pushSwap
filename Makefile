@@ -6,7 +6,7 @@
 #    By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:14:11 by mgulenay          #+#    #+#              #
-#    Updated: 2022/04/07 00:07:55 by mgulenay         ###   ########.fr        #
+#    Updated: 2022/04/07 17:45:25 by mgulenay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CFLAGS 	= 	-Wall -Wextra -Werror
 
 SRCS 	=	push_swap.c \
 			sort_small.c \
+			big_sort.c \
 			operations.c \
 			linkedlist_op.c \
 			input_check.c \

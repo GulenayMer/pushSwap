@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:53:10 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/06 20:11:09 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/07 22:52:12 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,19 @@ void	ft_lst_add_back(t_stack **head, t_stack *new)
 	}
 }
 
+int	ft_lst_size(t_stack *lst)
+{
+	int	count;
+
+	count = 0;
+	while (lst != NULL)
+	{
+		count++;
+		lst = lst->next;
+	}
+	return (count);
+}
+
 /* Function to print nodes in a given linked list */
 void	printList(t_stack *head)
 {
@@ -65,8 +78,8 @@ void	printList(t_stack *head)
 	}
 }
 
+/* frees the stack 
 
-/* frees the node */
 void	ft_free(t_stack **stack)
 {
 	t_stack *temp;
@@ -79,5 +92,26 @@ void	ft_free(t_stack **stack)
 			*stack = (*stack)->next;
 			free(temp);
 		}
+	}
+}
+*/
+
+void	free_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*curr;
+
+	curr = *stack_a;
+	while (curr)
+	{
+		curr = curr->next;
+		free(*stack_a);
+		*stack_a = curr;
+	}
+	curr = *stack_b;
+	while (curr)
+	{
+		curr = curr->next;
+		free(*stack_b);
+		*stack_b = curr;
 	}
 }
