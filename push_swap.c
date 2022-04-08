@@ -53,12 +53,11 @@ int	main(int argc, char **argv)
 		return (0);
 		free_stack(&stack_a, &stack_b);
 	}
-	/*if (ft_check_duplicate(argc, argv) || ft_check_integer(argc, argv) || ft_check_minmax(argv))
+	if (ft_check_duplicate(argc, argv) || ft_check_integer(argc, argv) || ft_check_minmax(argv))
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
-		ft_free(&stack_a);
-	}*/
+	}
 	if (check_if_sorted(&stack_a))
 		return (0);
 	if (argc > 2 && argc < 7)
