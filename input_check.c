@@ -14,9 +14,7 @@
 
 int	ft_is_digit(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	return (c >= '0' && c <= '9');
 }
 
 /* Check if it is an integer */
@@ -30,11 +28,12 @@ int	ft_check_integer(int argc, char **argv)
 		while (argv[argc][i])
 		{
 			if (ft_is_digit(argv[argc][i]) || argv[argc][i] == '-' || argv[argc][i] == '+')
-				return (0);	
-			i++;
+			    ++;
+			else
+				return (1);				
 		}
 	}
-	return (1);
+	return (0);
 }
 
 /*check if it has duplicate numeric parameters -- error */
