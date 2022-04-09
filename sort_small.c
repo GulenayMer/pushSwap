@@ -17,56 +17,51 @@ void	sort_two(t_stack **head)
 		swap_a(head);
 }
 
-void	sort_three(t_stack **head)
+
+void	sort_three_add(t_stack **head)
 {
-	t_stack *first_node;
-	t_stack *second_node;
-	t_stack *third_node;
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
 
-	first_node = *head;
-	second_node = first_node->next;
-	third_node = second_node->next;
-
-	/* 2 1 3  */
-	if (first_node->data > second_node->data && second_node->data < third_node->data 
-			&& first_node->data < third_node->data)
+	first = *head;
+	second = first->next;
+	third = second->next;
+	if (first->data > second->data && second->data > third->data 
+		&& first->data > third->data)
 	{
-			swap_a(head);
-			//printList(*head);
+		rotate_a(head);
+		swap_a(head);
 	}
-	/* 2 3 1 */
-	else if (first_node->data < second_node->data && second_node->data > third_node->data 
-			&& first_node->data > third_node->data)
-	{
-		rev_rotate_a(head);
-		//printList(*head);
-	}
-	
-	/* 1 3 2  */
-	else if (first_node->data < second_node->data && second_node->data > third_node->data 
-			&& first_node->data < third_node->data)
+	else if (first->data < second->data && second->data > third->data
+		&& first->data < third->data)
 	{
 		swap_a(head);
 		rotate_a(head);
-		//printList(*head);  
 	}
-	/* 3 2 1  */
-	 else if (first_node->data > second_node->data && second_node->data > third_node->data 
-			&& first_node->data > third_node->data)
-	{
-		//printList(*head);
+}
+
+void	sort_three(t_stack **head)
+{
+	t_stack	*first;
+	t_stack	*second;
+	t_stack	*third;
+
+	first = *head;
+	second = first->next;
+	third = second->next;
+	if (first->data > second->data && second->data < third->data
+		&& first->data < third->data)
+		swap_a(head);
+	else if (first->data < second->data && second->data > third->data
+		&& first->data > third->data)
+		rev_rotate_a(head);
+	else if (first->data > second->data && second->data < third->data
+		&& first->data > third->data)
 		rotate_a(head);
-		swap_a(head); 
-		//printList(*head);    
-	} 
-	/* 3 1 2  */
-	else if (first_node->data > second_node->data && second_node->data < third_node->data 
-			&& first_node->data > third_node->data)
-	{
-		rotate_a(head);
-		//printList(*head);
-	}
-} 
+	else
+		sort_three_add(head);
+}
 
 int 	get_minimum(t_stack **head)
 {
