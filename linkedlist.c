@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:53:10 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/07 22:52:12 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/09 20:06:12 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack	*ft_lst_new(int new_data)
 	if (!new_element)
 		return (NULL);
 	new_element->data = new_data;
-	new_element->index = -1;
+	new_element->index = 0;
 	new_element->next = NULL;
 	return (new_element);
 }
@@ -69,49 +69,20 @@ int	ft_lst_size(t_stack *lst)
 	return (count);
 }
 
-/* Function to print nodes in a given linked list */
-void	printList(t_stack *head)
+/* frees the stack */
+void	free_stack(t_stack **stack)
 {
-	while (head != NULL) {
-		printf("%d ", head->data);
-		head = head->next;
-	}
-}
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-/* frees the stack 
-
-void	ft_free(t_stack **stack)
-{
-	t_stack *temp;
-
-	if (stack)
+	tmp1 = *stack;
+	while (tmp1)
 	{
-		while (*stack)
+		tmp2 = tmp1->next;
+		if (tmp1)
 		{
-			temp = *stack;
-			*stack = (*stack)->next;
-			free(temp);
+			free(tmp1);
+			tmp1 = tmp2;
 		}
-	}
-}
-*/
-
-void	free_stack(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*curr;
-
-	curr = *stack_a;
-	while (curr)
-	{
-		curr = curr->next;
-		free(*stack_a);
-		*stack_a = curr;
-	}
-	curr = *stack_b;
-	while (curr)
-	{
-		curr = curr->next;
-		free(*stack_b);
-		*stack_b = curr;
 	}
 }

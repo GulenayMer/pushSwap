@@ -6,19 +6,14 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:24:07 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/06 22:17:55 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/16 06:08:42 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_digit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
 /* Check if it is an integer */
-int	ft_check_integer(int argc, char **argv)
+/*int	ft_check_integer(int argc, char **argv)
 {
 	int	i;
 
@@ -27,20 +22,56 @@ int	ft_check_integer(int argc, char **argv)
 		i = 0;
 		while (argv[argc][i])
 		{
-			if (ft_is_digit(argv[argc][i]) || argv[argc][i] == '-' || argv[argc][i] == '+')
-			    ++;
-			else
-				return (1);				
+			if (ft_isdigit(argv[argc][i]) || argv[argc][i] == '-'
+				|| argv[argc][i] == '+')
+				i++;
+			else if (ft_isalpha(argv[argc][i]) == 1 || argv[argc][i] == '.'
+			|| (argv[argc][i] == '-' && (argv[argc][i]) == '\0')
+			|| (argv[argc][i] == '+' && (argv[argc][i]) == '\0'))
+				return (1);
 		}
 	}
 	return (0);
+}*/
+
+int	check_numbers(char **av)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	if (!av[0])
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(-1);
+	}
+	while (av[++i])
+	{
+		j = -1;
+		if (ft_check_minmax(&av[i]) == 0)
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(-1);
+		}
+		while (av[i][++j])
+		{
+			if (ft_isalpha(av[i][j]) == 1 || av[i][j] == '.'
+			|| ((av[i][j]) == '-' && (av[i][j +1]) == '\0')
+			|| ((av[i][j]) == '+' && (av[i][j +1]) == '\0'))
+			{
+				ft_putstr_fd("Error\n", 2);
+				exit(-1);
+			}		
+		}
+	}
+		return (1);
 }
 
 /*check if it has duplicate numeric parameters -- error */
-int ft_check_duplicate(int argc, char **argv)
+int	ft_check_duplicate(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (i < argc - 1)
@@ -62,21 +93,20 @@ int	ft_check_minmax(char **argv)
 {
 	int		i;
 	long	tmp;
-	
+
 	i = 0;
 	while (argv[i])
 	{
 		tmp = ft_atoi(argv[i]);
-		if (tmp <= -2147483648 || tmp >= 2147483647)
+		if (tmp < -2147483648 || tmp > 2147483647)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-
 /* check if it is already sorted */
-int		check_if_sorted(t_stack **stack)
+int	check_if_sorted(t_stack **stack)
 {
 	t_stack	*temp;
 

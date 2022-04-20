@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linkedlist_op.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/09 20:02:46 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/04/09 20:59:00 by mgulenay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void swap_ab(t_stack **head)
+void	swap_ab(t_stack **head)
 {
 	t_stack	*first_node;
 	t_stack	*second_node;
@@ -14,8 +26,7 @@ void swap_ab(t_stack **head)
 	*head = second_node;
 }
 
-
-void rotate_ab(t_stack **head)
+void	rotate_ab(t_stack **head)
 {
 	t_stack	*temp;
 	t_stack	*first_node;
@@ -33,12 +44,12 @@ void rotate_ab(t_stack **head)
 	*head = second_node;
 }
 
-
-void rev_rotate_ab(t_stack **head)
+void	rev_rotate_ab(t_stack **head)
 {
-	t_stack	*lastminus_node = NULL;;
-	t_stack	*last_node = *head;;
+	t_stack	*lastminus_node;
+	t_stack	*last_node;
 
+	last_node = *head;
 	while (last_node->next != NULL)
 	{
 		lastminus_node = last_node;
@@ -51,9 +62,8 @@ void rev_rotate_ab(t_stack **head)
 
 void	push_ab(t_stack **head_a, t_stack **head_b)
 {
-
-	t_stack *first_node;
-	t_stack *second_node;
+	t_stack	*first_node;
+	t_stack	*second_node;
 
 	first_node = *head_a;
 	second_node = first_node->next;

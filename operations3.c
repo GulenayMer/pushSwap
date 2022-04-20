@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 22:05:36 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/09 20:10:24 by mgulenay         ###   ########.fr       */
+/*   Created: 2022/04/09 20:09:10 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/04/09 20:09:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_stack **head)
+void	rotate_both(t_stack **head)
 {
-	swap_ab(head);
-	write(1, "sa\n", 3);
+	rotate_a(head);
+	rotate_b(head);
+	write(1, "rr\n", 3);
 }
 
-void	swap_b(t_stack **head)
+void	rev_rotate_a(t_stack **head)
 {
-	swap_ab(head);
-	write(1, "sb\n", 3);
+	rev_rotate_ab(head);
+	write(1, "rra\n", 4);
 }
 
-void	swap_both(t_stack **head)
+void	rev_rotate_b(t_stack **head)
 {
-	swap_a(head);
-	swap_b(head);
-	write(1, "ss\n", 3);
+	rev_rotate_ab(head);
+	write(1, "rrb\n", 4);
 }
 
-void	rotate_a(t_stack **head)
+void	rev_rotate_both(t_stack **head)
 {
-	rotate_ab(head);
-	write(1, "ra\n", 3);
-}
-
-void	rotate_b(t_stack **head)
-{
-	rotate_ab(head);
-	write(1, "rb\n", 3);
+	rev_rotate_a(head);
+	rev_rotate_b(head);
+	write(1, "rrr\n", 4);
 }
