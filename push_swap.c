@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:00 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/16 06:06:32 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/09 21:22:32 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ int	sort_small_size(t_stack *stack_a, t_stack *stack_b, int argc)
 
 int	check_input(int argc, char **argv)
 {
-	if (ft_check_duplicate(argc, argv) || check_numbers(argv))
+	if (ft_check_duplicate(argc, argv) || ft_check_integer(argc, argv)
+		|| ft_check_minmax(argv))
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}
 	return (0);
 }
-//  || ft_check_integer(argv)|| ft_check_minmax(argv)
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -72,10 +73,10 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1 || argc == 2)
+	check_input(argc, argv);
+	if (argc == 1)
 		return (0);
 	get_input(&stack_a, argv);
-	check_input(argc, argv);
 	if (check_if_sorted(&stack_a))
 	{
 		free_stack(&stack_a);

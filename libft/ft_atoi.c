@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 11:06:44 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/06 22:13:17 by mgulenay         ###   ########.fr       */
+/*   Created: 2021/11/22 14:00:41 by mgulenay          #+#    #+#             */
+/*   Updated: 2021/12/10 00:49:54 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	result;
-	int	i;
-	int	sign;
+	long	result;
+	int		i;
+	int		sign;
 
 	sign = 1;
 	i = 0;
@@ -38,30 +38,4 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (sign * result);
-}
-
-/* print error  */
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
-	size_t	i;
-
-	length = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		length++;
-		i++;
-	}
-	return (length);
-}
-
-void	ft_putstr_fd(char *str, int fd)
-{
-	size_t length;
-
-	if (!str)
-		return ;
-	length = ft_strlen(str);
-	write(fd, str, length);
 }

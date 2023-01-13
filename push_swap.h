@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:14:21 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/16 05:46:30 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/09 21:19:17 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int		ft_check_minmax(char **argv);
 int		check_if_sorted(t_stack **stack);
 int		ft_is_valid(int argc, char **argv);
 int		check_input(int argc, char **argv);
-int	check_numbers(char **av);
 
 /* Linked List Utilities */
 t_stack	*ft_lst_new(int new_data);

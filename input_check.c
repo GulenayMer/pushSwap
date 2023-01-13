@@ -6,65 +6,40 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:24:07 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/04/16 06:08:42 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:56:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Check if it is an integer */
-/*int	ft_check_integer(int argc, char **argv)
+int	ft_check_integer(int argc, char **argv)
 {
 	int	i;
+	int	j;
 
-	while (--argc)
+	i = 1;
+	while (i <= argc - 1)
 	{
-		i = 0;
-		while (argv[argc][i])
-		{
-			if (ft_isdigit(argv[argc][i]) || argv[argc][i] == '-'
-				|| argv[argc][i] == '+')
-				i++;
-			else if (ft_isalpha(argv[argc][i]) == 1 || argv[argc][i] == '.'
-			|| (argv[argc][i] == '-' && (argv[argc][i]) == '\0')
-			|| (argv[argc][i] == '+' && (argv[argc][i]) == '\0'))
-				return (1);
-		}
-	}
-	return (0);
-}*/
-
-int	check_numbers(char **av)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	if (!av[0])
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(-1);
-	}
-	while (av[++i])
-	{
-		j = -1;
-		if (ft_check_minmax(&av[i]) == 0)
+		j = 0;
+		if ((argv[i][0] == '-' && argv[i][1] == '\0')
+			|| (argv[i][0] == '+' && argv[i][1] == '\0'))
 		{
 			ft_putstr_fd("Error\n", 2);
 			exit(-1);
+			return (1);
 		}
-		while (av[i][++j])
+		if (argv[i][0] == '+' || argv[i][0] == '-')
+			j++;
+		while (argv[i][j])
 		{
-			if (ft_isalpha(av[i][j]) == 1 || av[i][j] == '.'
-			|| ((av[i][j]) == '-' && (av[i][j +1]) == '\0')
-			|| ((av[i][j]) == '+' && (av[i][j +1]) == '\0'))
-			{
-				ft_putstr_fd("Error\n", 2);
-				exit(-1);
-			}		
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return (1);
+				j++;
 		}
+		i++;
 	}
-		return (1);
+	return (0);
 }
 
 /*check if it has duplicate numeric parameters -- error */

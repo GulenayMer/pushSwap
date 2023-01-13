@@ -60,7 +60,7 @@ t_stack	*get_min(t_stack **stack)
 	{
 		while (head != NULL)
 		{
-			if (head->index == 0 && (!has_min || min->data > head->data))
+			if (head->index == -1 && (!has_min || min->data > head->data))
 			{
 				min = head;
 				has_min = 1;

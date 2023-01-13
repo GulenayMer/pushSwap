@@ -21,7 +21,7 @@ t_stack	*ft_lst_new(int new_data)
 	if (!new_element)
 		return (NULL);
 	new_element->data = new_data;
-	new_element->index = 0;
+	new_element->index = -1;
 	new_element->next = NULL;
 	return (new_element);
 }
