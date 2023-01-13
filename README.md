@@ -4,7 +4,7 @@ This project is about sorting data on a stack :
 
 + Starting with randomly ordered a set of integers on one stack && one empty stack 
 + a limited set of instructions needed to be written to manipulate both stacks.
-+ Te lowest possible number of actions is used.
++ The lowest possible number of actions is used.
 + I used the linked list data structure && Redix sort for the optimized data sorting
 
 Instructions are : 
